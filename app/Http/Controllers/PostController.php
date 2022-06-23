@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use App\Models\Test;
+use Auth;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class TestController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,28 +15,6 @@ class TestController extends Controller
      */
     public function index($category)
     {
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.upbit.com/v1/ticker?markets=KRW-BTC",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => [
-                "Accept: application/json"
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        $results = json_decode($response, true);
-
         if($category == "coin") {
             $posts = DB::table('posts')
                         ->where('category', 1)
@@ -45,19 +24,7 @@ class TestController extends Controller
                         ->where('category', 2)
                         ->get();
         }
-        //$posts = DB::table('posts')->get();
-        
-
-        if ($err) {
-            return $err;
-        } else {
-            $coin_status = [];
-            $coin_status['trade_price'] = $results[0]['trade_price'];
-            $coin_status['trade_time'] = substr($results[0]['trade_time_kst'], 0, 2);
-            $coin_status['trade_minute'] = substr($results[0]['trade_time_kst'], 2, 2);
-            $coin_status['trade_second'] = substr($results[0]['trade_time_kst'], 4, 2);
-            return view('message_board.message_board', ['posts' => $posts, 'category' => $category]);
-        }
+        return view('message_board.message_board', ['posts' => $posts, 'category' => $category]);
     }
 
     /**
@@ -78,15 +45,20 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Post::create([
+            'category' => $request->category,
+            'user_id' => Auth::user()->email,
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
 
-        return view('message_board.message_write');
+        return redirect('/dashboard');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Test  $test
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -99,34 +71,55 @@ class TestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Test  $test
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Test $test)
+    public function edit($id)
     {
-        //
+        $posts = Post::where('id', $id)->first();
+        $category = $posts->category;
+        return view('message_board.message_edit', ['posts' => $posts, 'category' => $category]);
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Test  $test
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Test $test)
+    public function update(Request $request, $id)
     {
-        //
+        /* $validation = $request->validation([
+            'title' => 'required',
+            'description' => 'required',
+        ])->validate(); */
+
+        $post = Post::where('id', $id)->first();
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+
+        return redirect()->route('show', $id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Test  $test
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Test $test)
+    public function destroy($id)
     {
-        //
+        $post = Post::where('id', $id)->first();
+        if($post->category == 1) {
+            $category = "coin";
+        } else if($post->category == 2) {
+            $category = "free";
+        }
+        $post->delete();
+
+        return redirect()->route('post', $category);
     }
 }

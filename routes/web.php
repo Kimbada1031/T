@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,4 +34,10 @@ Route::get('tasks/create', [TaskController::class, 'create']);
 Route::post('tasks', [TaskController::class, 'store']); */
 //Route::resource('tasks', TaskController::class);
 
-Route::get('/test', [TestController::class, 'index']);
+Route::get('/post/{category}', [PostController::class, 'index'])->name('post');
+Route::get('/write', [TestController::class, 'store'])->name('write');
+Route::post('/writePost', [PostController::class, 'store'])->name('write_post');
+Route::get('/show/{id}', [PostController::class, 'show'])->name('show');
+Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
+Route::post('/update/{id}', [PostController::class, 'update'])->name('update');
+Route::get('/delete/{id}', [PostController::class, 'destroy'])->name('delete');

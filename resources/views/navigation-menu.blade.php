@@ -14,8 +14,11 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('dashboard') }}">
-                        게시판
+                    <x-jet-nav-link href="{{ route('post', 'coin') }}" :active="request()->routeIs('post/coin')">
+                        코인 게시판
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('post', 'free') }}" :active="request()->routeIs('post/free')">
+                        자유 게시판
                     </x-jet-nav-link>
                 </div>
             </div>
