@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    시세 현황
+                    시세 현황 af asdfsdfsadfds
                     <div class="mt-6 text-gray-500 coin_dt">
                         {{ $bit_status['trade_time'] }}시 {{ $bit_status['trade_minute'] }}분 {{ $bit_status['trade_second'] }}초 기준
                     </div>
@@ -54,7 +54,7 @@
                     <div class="ml-12">
                         @forelse($coin_posts as $c_post => $c_li)
                         <div class="mt-2 text-sm text-gray-500">
-                            <a href="#">{{ $c_li->title }}</a> {{ Auth::user()->email }}
+                            <a href="{{ route('show', $c_li->id) }}">{{ $c_li->title }} ({{ $c_li->cnt }})</a> {{ $c_li->user_id }}
                         </div>
                         @empty
                         <div class="mt-2 text-sm text-gray-500">
@@ -80,9 +80,9 @@
                     </div>
 
                     <div class="ml-12">
-                    @forelse($free_posts as $f_post => $f_li)
+                        @forelse($free_posts as $f_post => $f_li)
                         <div class="mt-2 text-sm text-gray-500">
-                            <a href="#">{{ $f_li->title }} {{ Auth::user()->email }}
+                            <a href="{{ route('show', $f_li->id) }}">{{ $f_li->title }} ({{ $f_li->cnt }}) {{ $f_li->user_id }}
                                 
                             </a>
                         </div>

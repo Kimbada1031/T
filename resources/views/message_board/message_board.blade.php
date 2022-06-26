@@ -14,9 +14,10 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     글 목록
+
                     <div class="mt-6 text-gray-500 coin_dt">
                         @forelse($posts as $post => $li)
-                            <p><a href="{{ route('show', $li->id) }}">{{ $li->title }}</a></p>
+                            <p><a href="{{ route('show', $li->id) }}">{{ $li->title }}</a> ({{ $li->cnt }})</p>
                         @empty
                             <p>작성된 게시물이 없습니다.</p>
                         @endforelse

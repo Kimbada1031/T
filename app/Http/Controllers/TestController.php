@@ -12,7 +12,7 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($category)
+    public function index()
     {
         $curl = curl_init();
 
@@ -36,18 +36,22 @@ class TestController extends Controller
 
         $results = json_decode($response, true);
 
-        if($category == "coin") {
-            $posts = DB::table('posts')
-                        ->where('category', 1)
+        /* $posts = DB::table('posts')
+                    ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+                    ->select('posts.*')
+                    ->addSelect(DB::raw('count(comments.id) as cnt'))
+                    ->where('posts.category', 1)
+                    ->groupBy('posts.id')
+                    ->get(); */
+        $posts = DB::table('posts')
+                    ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+                    ->select('posts.*')
+                    ->addSelect(DB::raw('count(comments.id) as cnt'));
+        $posts = $posts->where('posts.category', 1)
+                        ->groupBy('posts.id')
                         ->get();
-        } else if($category == "free") {
-            $posts = DB::table('posts')
-                        ->where('category', 2)
-                        ->get();
-        }
         //$posts = DB::table('posts')->get();
         
-
         if ($err) {
             return $err;
         } else {
@@ -56,7 +60,7 @@ class TestController extends Controller
             $coin_status['trade_time'] = substr($results[0]['trade_time_kst'], 0, 2);
             $coin_status['trade_minute'] = substr($results[0]['trade_time_kst'], 2, 2);
             $coin_status['trade_second'] = substr($results[0]['trade_time_kst'], 4, 2);
-            return view('message_board.message_board', ['posts' => $posts, 'category' => $category]);
+            return view('message_board.message_board', ['posts' => $posts, 'category' => 'coin']);
         }
     }
 

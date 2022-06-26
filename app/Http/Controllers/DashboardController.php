@@ -23,8 +23,21 @@ class DashboardController extends Controller
         $xrp = "KRW-XRP";
         $xrp_status = Dashboard::getCoinStatus($xrp);
 
-        $coin_posts = DB::table('posts')->where('category', 1)->get();
-        $free_posts = DB::table('posts')->where('category', 2)->get();
+        $coin_posts = DB::table('posts')
+                    ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+                    ->select('posts.*')
+                    ->addSelect(DB::raw('count(comments.id) as cnt'))
+                    ->where('posts.category', 1)
+                    ->groupBy('posts.id')
+                    ->get();
+
+        $free_posts = DB::table('posts')
+                    ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+                    ->select('posts.*')
+                    ->addSelect(DB::raw('count(comments.id) as cnt'))
+                    ->where('posts.category', 2)
+                    ->groupBy('posts.id')
+                    ->get();
 
         return view('dashboard', ['bit_status' => $bit_status, 'eth_status' => $eth_status, 'xrp_status' => $xrp_status, 
                                     'coin_posts' => $coin_posts, 'free_posts' => $free_posts]);

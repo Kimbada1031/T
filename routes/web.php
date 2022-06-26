@@ -41,3 +41,9 @@ Route::get('/show/{id}', [PostController::class, 'show'])->name('show');
 Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
 Route::post('/update/{id}', [PostController::class, 'update'])->name('update');
 Route::get('/delete/{id}', [PostController::class, 'destroy'])->name('delete');
+
+Route::get('/comment', [PostController::class, 'commentStore'])->name('comment');
+Route::get('/d_comment/{id}', [PostController::class, 'commentDestroy'])->name('d_comment');
+
+
+Route::get('/test', [TestController::class, 'index'])->name('test');
