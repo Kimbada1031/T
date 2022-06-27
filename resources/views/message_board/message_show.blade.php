@@ -31,14 +31,21 @@
                     </div>
                     <div class="mt-6 text-gray-500 coin_dt">
                         <p>댓글</p>
+
                         @forelse($comments as $comment => $li)
-                            <p>{{ $li->user_id }}  {{ $li->description }}  {{ $li->created_at }}
+                            <p id="comment">{{ $li->user_id }} {{ $li->description }} {{ $li->created_at }}
                                 @if($li->user_id == Auth::user()->email)
-                                <a href="#">수정</a><a href="{{ route('d_comment', $li->id) }}">삭제</a>
+                                    <a onclick="commentEdit(this);">수정</a><a href="{{ route('d_comment', $li->id) }}">삭제</a>
                                 @else
-                                <a href="#">신고</a>
+                                        <a href="#">신고</a>
                                 @endif
                             </p>
+                            <form method="get" action="{{ route('u_comment', $li->id) }}">
+                                <p id="edit_comment" style="display:none;">
+                                {{ $li->user_id }}<input name="description" type="text" value="{{ $li->description }}"></input>{{ $li->created_at }}
+                                    <button type="submit">수정</button><a onclick="cancel(this)">취소</a>
+                                </p>
+                            </form>
                         @empty
                             <p>등록된 댓글이 없습니다.</p>
                         @endforelse
@@ -53,3 +60,19 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function commentEdit(e_comment) {
+        var cmt = e_comment.parentNode;
+        var ecmt = e_comment.parentNode.nextSibling.nextSibling.childNodes[1];
+        cmt.style.display="none";
+        ecmt.style.display="block";
+    }
+    function cancel(e_comment) {
+        var cmt = e_comment.parentNode.parentNode.previousSibling.previousSibling;
+        var ecmt = e_comment.parentNode;
+        cmt.style.display="block";
+        ecmt.style.display="none";
+    }
+</script>
+

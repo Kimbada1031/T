@@ -126,6 +126,24 @@ class PostController extends Controller
         return redirect()->route('show', $id);
     }
 
+    public function commentUpdate(Request $request, $id)
+    {
+        $comment = DB::table('comments')->where('id', $id)->first();
+        $post = Post::where('id', $comment->post_id)->first();
+
+        /* $comment->description = $request->description;
+        $comment->save(); */
+
+        $query = DB::table('comments')
+                        ->where('id', $id)
+                        ->update([
+                            'description' => $request->description,
+                            'updated_at'  => Carbon::now(),
+                        ]);  
+
+        return redirect()->route('show', $post->id);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

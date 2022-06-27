@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    시세 현황 af asdfsdfsadfds
+                    시세 현황
                     <div class="mt-6 text-gray-500 coin_dt">
                         {{ $bit_status['trade_time'] }}시 {{ $bit_status['trade_minute'] }}분 {{ $bit_status['trade_second'] }}초 기준
                     </div>
