@@ -72,7 +72,6 @@ class PostController extends Controller
         $posts = Post::where('id', $request->post_id)->first();
         $category = $posts->category;
         $comments = DB::table('comments')->where('post_id', $request->post_id)->get();
-
         return view('message_board.message_show', ['posts' => $posts, 'category' => $category, 'comments' => $comments]);
     }
 
@@ -87,7 +86,8 @@ class PostController extends Controller
         $posts = Post::where('id', $id)->first();
         $category = $posts->category;
         $comments = DB::table('comments')->where('post_id', $id)->get();
-        return view('message_board.message_show', ['posts' => $posts, 'category' => $category, 'comments' => $comments]);
+        $comment_cnt = DB::table('comments')->where('post_id', $id)->count();
+        return view('message_board.message_show', ['posts' => $posts, 'category' => $category, 'comments' => $comments, 'comment_cnt' => $comment_cnt]);
     }
 
     /**

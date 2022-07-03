@@ -14,30 +14,29 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     {{ $posts->title }}
+                    <div class="cmt-6 text-gray-500 coin_dt">
+                        <p align="right">작성일 :  {{ $posts->created_at }}</p>
+                    </div>
                     <div class="mt-6 text-gray-500 coin_dt">
                         <p>{{ $posts->description }}</p>
                     </div>
                     <div class="coin_price text-2xl">
-                        @if($category == 1)
-                        <button type="button" onclick="location.href='{{ route('post', 'coin') }}'">목록</button>
-                        @elseif($category == 2)
-                        <button type="button" onclick="location.href='{{ route('post', 'free') }}'">목록</button>
-                        @endif
                         @if($posts->user_id == Auth::user()->email)
                             @csrf
-                            <button type="button" onclick="location.href='{{ route('edit', $posts->id) }}'">수정</button>
-                            <button type="button" onclick="location.href='{{ route('delete', $posts->id) }}'">삭제</button>
+                            <button class="edit_btn" type="button" onclick="location.href='{{ route('edit', $posts->id) }}'">수정</button>
+                            <button class="edit_btn" type="button" onclick="location.href='{{ route('delete', $posts->id) }}'">삭제</button>
                         @endif
                     </div>
                     <div class="mt-6 text-gray-500 coin_dt">
-                        <p>댓글</p>
+                        <p>댓글 [{{ $comment_cnt }}]</p>
 
                         @forelse($comments as $comment => $li)
-                            <p id="comment">{{ $li->user_id }} {{ $li->description }} {{ $li->created_at }}
+                            <p class="comment_p" id="comment">{{ $li->user_id }} {{ $li->description }} {{ $li->created_at }}
                                 @if($li->user_id == Auth::user()->email)
-                                    <a onclick="commentEdit(this);">수정</a><a href="{{ route('d_comment', $li->id) }}">삭제</a>
+                                    <a class="edit_btn" onclick="commentEdit(this);">수정</a>
+                                    <a class="edit_btn" href="{{ route('d_comment', $li->id) }}">삭제</a>
                                 @else
-                                        <a href="#">신고</a>
+                                    <a class="report_btn" href="#">신고</a>
                                 @endif
                             </p>
                             <form method="get" action="{{ route('u_comment', $li->id) }}">
@@ -52,11 +51,17 @@
                         <form method="get" action="{{ route('comment') }}">
                         @csrf
                             <input name="post_id" type="hidden" value="{{ $posts->id }}">
-                            <input name="description" type="text" placeholder="내용을 입력하세요."></input><button type="submit">등록</button>
+                            <input class="comment_box" name="description" type="text" placeholder="내용을 입력하세요."></input>
+                            <button class="submit_btn" type="submit">등록</button>
                         </form>
                     </div>
                 </div>
             </div>
+            @if($category == 1)
+            <button type="button" onclick="location.href='{{ route('post', 'coin') }}'">목록</button>
+            @elseif($category == 2)
+            <button type="button" onclick="location.href='{{ route('post', 'free') }}'">목록</button>
+            @endif
         </div>
     </div>
 </x-app-layout>

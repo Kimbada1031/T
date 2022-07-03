@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            코인 게시판fffffffffff
+            코인 게시판
         </h2>
     </x-slot>
 
@@ -17,7 +17,7 @@
                             @csrf
                             <!-- 카테고리 1:코인 2:자유 게시판 -->
                             <select name="category">
-                                <option>카테고리를 선택해주세요.</option>
+                                <option>카테고리</option>
                                 <option value="1">코인</option>
                                 <option value="2">자유</option>
                             </select>
@@ -25,7 +25,7 @@
                             <br>
                             <textarea name="description"></textarea>
                             <br>
-                            <input type="submit">저장</button>
+                            <input class="basic_btn" type="submit" value="저장"></input>
                         </form>
                         
                     </div>

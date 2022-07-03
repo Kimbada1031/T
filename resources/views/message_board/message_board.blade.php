@@ -14,17 +14,28 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     글 목록
-
                     <div class="mt-6 text-gray-500 coin_dt">
+                        <table class="p_table">
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>추천</th>
                         @forelse($posts as $post => $li)
-                            <p><a href="{{ route('show', $li->id) }}">{{ $li->title }}</a> ({{ $li->cnt }})</p>
+                            <tr>
+                                <td><a class="t_list" href="{{ route('show', $li->id) }}">{{ $li->title }}</a> ({{ $li->cnt }})</td>
+                                <td>{{ $li->user_id }}</td>
+                                <td>{{ $li->created_at }}</td>
+                                <td>0</td>
+                            </tr>
                         @empty
-                            <p>작성된 게시물이 없습니다.</p>
+                            <tr>
+                                <td colspan="4">작성된 게시물이 없습니다.</td>
+                            </tr>
                         @endforelse
+                        </table>
+                        <button class="basic_btn" type="button" onclick="location.href='{{ route('write') }}'">글쓰기</button>
                     </div>
-                    <div class="coin_price text-2xl">
-                        <button type="button" onclick="location.href='{{ route('write') }}'">글쓰기</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>

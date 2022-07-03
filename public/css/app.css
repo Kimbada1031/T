@@ -1049,6 +1049,12 @@ select {
 .mt-6 {
     margin-top: 1.5rem;
 }
+
+.cmt-1 {
+    margin-top: 0.5rem;
+    text-align: right;
+}
+
 .-mr-1 {
     margin-right: -0.25rem;
 }
@@ -2276,6 +2282,91 @@ select {
         height: 35px;
         width: 35px;
         display: inline;
+    }
+
+    .p_title {
+        width: 400px;
+        display: inline;
+    }
+
+    .p_link {
+        padding-right: 30px;
+    }
+
+    .t_list {
+        font-size: 1rem;
+    }
+
+    .basic_btn {
+        border: none;
+        padding: 3px 7px;
+        border-radius: 15px;
+        font-family: "paybooc-Light", sans-serif;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.25s;
+        margin: 20px;
+        background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+        color: white;
+        font-size: 1rem;
+        float: right;
+    }
+
+    .submit_btn {
+        border: none;
+        padding: 3px 7px;
+        border-radius: 15px;
+        font-family: "paybooc-Light", sans-serif;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.25s;
+        margin: 20px;
+        background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+        color: white;
+        font-size: 1rem;
+    }
+
+    .edit_btn {
+        border: none;
+        padding: 2px 4px;
+        border-radius: 15px;
+        font-family: "paybooc-Light", sans-serif;
+        text-decoration: none;
+        transition: 0.25s;
+        margin: 2px;
+        background: rgb(88, 196, 238);
+        color: white;
+        font-size: 0.5rem;
+    }
+
+    .report_btn {
+        border: none;
+        padding: 2px 4px;
+        border-radius: 15px;
+        font-family: "paybooc-Light", sans-serif;
+        text-decoration: none;
+        transition: 0.25s;
+        margin: 2px;
+        background: red;
+        color: white;
+        font-size: 0.5rem;
+    }
+
+    .p_table {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .comment_box {
+        width: 90%;
+        height: 70%;
+    }
+
+    .comment_p {
+        margin: 7px;
     }
 }
 @media (min-width: 1024px) {

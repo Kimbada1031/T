@@ -34,7 +34,6 @@
                         {{ $xrp_status['trade_price'] }} won
                     </div>
 <!--                     <div class="mt-8 text-2xl">
-                       
                     </div> -->
 
                     <!-- <div class="mt-6 text-gray-500">
@@ -54,7 +53,7 @@
                     <div class="ml-12">
                         @forelse($coin_posts as $c_post => $c_li)
                         <div class="mt-2 text-sm text-gray-500">
-                            <a href="{{ route('show', $c_li->id) }}">{{ $c_li->title }} ({{ $c_li->cnt }})</a> {{ $c_li->user_id }}
+                            <div class="p_title"><a class="p_link" href="{{ route('show', $c_li->id) }}">{{ $c_li->title }} ({{ $c_li->cnt }})</a> {{ $c_li->user_id }}</div>
                         </div>
                         @empty
                         <div class="mt-2 text-sm text-gray-500">
@@ -82,9 +81,8 @@
                     <div class="ml-12">
                         @forelse($free_posts as $f_post => $f_li)
                         <div class="mt-2 text-sm text-gray-500">
-                            <a href="{{ route('show', $f_li->id) }}">{{ $f_li->title }} ({{ $f_li->cnt }}) {{ $f_li->user_id }}
-                                
-                            </a>
+                            <div class="p_title"><a class="p_link" href="{{ route('show', $f_li->id) }}">{{ $f_li->title }} ({{ $f_li->cnt }}) </a>
+                            {{ $f_li->user_id }}</div>
                         </div>
                         @empty
                         <div class="mt-2 text-sm text-gray-500">
