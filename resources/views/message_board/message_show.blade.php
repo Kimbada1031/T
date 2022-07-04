@@ -13,18 +13,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    {{ $posts->title }}
+                    <span class="p_title">{{ $posts->title }}</span>
                     <div class="cmt-6 text-gray-500 coin_dt">
                         <p align="right">작성일 :  {{ $posts->created_at }}</p>
                     </div>
-                    <div class="mt-6 text-gray-500 coin_dt">
+                    <div class="mt-6 text-gray-500 coin_dt p_description">
                         <p>{{ $posts->description }}</p>
                     </div>
                     <div class="coin_price text-2xl">
                         @if($posts->user_id == Auth::user()->email)
                             @csrf
-                            <button class="edit_btn" type="button" onclick="location.href='{{ route('edit', $posts->id) }}'">수정</button>
-                            <button class="edit_btn" type="button" onclick="location.href='{{ route('delete', $posts->id) }}'">삭제</button>
+                            <button class="submit_btn edit_btn" type="button" onclick="location.href='{{ route('edit', $posts->id) }}'">수정</button>
+                            <button class="submit_btn edit_btn" type="button" onclick="location.href='{{ route('delete', $posts->id) }}'">삭제</button>
                         @endif
                     </div>
                     <div class="mt-6 text-gray-500 coin_dt">
@@ -33,10 +33,10 @@
                         @forelse($comments as $comment => $li)
                             <p class="comment_p" id="comment">{{ $li->user_id }} {{ $li->description }} {{ $li->created_at }}
                                 @if($li->user_id == Auth::user()->email)
-                                    <a class="edit_btn" onclick="commentEdit(this);">수정</a>
-                                    <a class="edit_btn" href="{{ route('d_comment', $li->id) }}">삭제</a>
+                                    <a class="submit_btn edit_btn" onclick="commentEdit(this);">수정</a>
+                                    <a class="submit_btn edit_btn" href="{{ route('d_comment', $li->id) }}">삭제</a>
                                 @else
-                                    <a class="report_btn" href="#">신고</a>
+                                    <a class="submit_btn report_btn" href="#">신고</a>
                                 @endif
                             </p>
                             <form method="get" action="{{ route('u_comment', $li->id) }}">
@@ -58,9 +58,9 @@
                 </div>
             </div>
             @if($category == 1)
-            <button type="button" onclick="location.href='{{ route('post', 'coin') }}'">목록</button>
+            <button class="submit_btn list_btn" type="button" onclick="location.href='{{ route('post', 'coin') }}'">목록</button>
             @elseif($category == 2)
-            <button type="button" onclick="location.href='{{ route('post', 'free') }}'">목록</button>
+            <button class="submit_btn list_btn" type="button" onclick="location.href='{{ route('post', 'free') }}'">목록</button>
             @endif
         </div>
     </div>

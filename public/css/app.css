@@ -2284,7 +2284,7 @@ select {
         display: inline;
     }
 
-    .p_title {
+    .d_title {
         width: 400px;
         display: inline;
     }
@@ -2329,28 +2329,16 @@ select {
     }
 
     .edit_btn {
-        border: none;
         padding: 2px 4px;
-        border-radius: 15px;
-        font-family: "paybooc-Light", sans-serif;
-        text-decoration: none;
-        transition: 0.25s;
         margin: 2px;
         background: rgb(88, 196, 238);
-        color: white;
         font-size: 0.5rem;
     }
 
     .report_btn {
-        border: none;
         padding: 2px 4px;
-        border-radius: 15px;
-        font-family: "paybooc-Light", sans-serif;
-        text-decoration: none;
-        transition: 0.25s;
         margin: 2px;
         background: red;
-        color: white;
         font-size: 0.5rem;
     }
 
@@ -2360,13 +2348,38 @@ select {
         text-align: center;
     }
 
+    .p_title {
+        font-size: 1.25rem;
+        font-weight: 550;
+    }
+
+    .p_description {
+        color: black;
+        font-weight: 500;
+    }
+
     .comment_box {
         width: 90%;
         height: 70%;
     }
 
+    .title_box {
+        width: 88.2%;
+    }
+
+    .description_box {
+        width: 100%;
+    }
+
     .comment_p {
         margin: 7px;
+    }
+
+    .list_btn {
+        margin-left: 5rem;
+        margin-right: 5rem;
+        margin-top: 1rem;
+        background: rgb(64, 0, 255);
     }
 }
 @media (min-width: 1024px) {
