@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
-class AuthController extends Controller {
+class AdminController extends Controller
+{
     /**
      * Create a new AuthController instance.
      *
@@ -114,5 +112,4 @@ class AuthController extends Controller {
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
-
 }
