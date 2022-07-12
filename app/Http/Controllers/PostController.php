@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Carbon;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -130,9 +131,6 @@ class PostController extends Controller
     {
         $comment = DB::table('comments')->where('id', $id)->first();
         $post = Post::where('id', $comment->post_id)->first();
-
-        /* $comment->description = $request->description;
-        $comment->save(); */
 
         $query = DB::table('comments')
                         ->where('id', $id)

@@ -12,12 +12,17 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @yield('custom_css')
+
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+        @yield('custom_script')
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -43,5 +48,7 @@
         @stack('modals')
 
         @livewireScripts
+        
+        @yield('write_js')
     </body>
 </html>

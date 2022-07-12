@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
 
 class AdminController extends Controller
 {
@@ -23,7 +26,6 @@ class AdminController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request) {
-    	
         $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
@@ -39,14 +41,14 @@ class AdminController extends Controller
                 ], 400);
             }
             
-        $user = User::create([
+        $user = Admin::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
             ]);
             
         return response()->json([
-            'message' => 'User created.',
+            'message' => 'Admin created.',
             'user' => $user
         ]);	
     }

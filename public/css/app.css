@@ -2335,6 +2335,11 @@ select {
         font-size: 0.5rem;
     }
 
+    .a_btn {
+        padding: 0.1px 10px;
+        float: right;
+    }
+
     .report_btn {
         padding: 2px 4px;
         margin: 2px;
@@ -2356,6 +2361,7 @@ select {
     .p_description {
         color: black;
         font-weight: 500;
+        font-size: 1rem;
     }
 
     .comment_box {
@@ -2380,6 +2386,10 @@ select {
         margin-right: 5rem;
         margin-top: 1rem;
         background: rgb(64, 0, 255);
+    }
+
+    th {
+        font-size: 1rem;
     }
 }
 @media (min-width: 1024px) {

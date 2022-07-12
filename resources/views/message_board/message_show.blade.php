@@ -18,13 +18,13 @@
                         <p align="right">작성일 :  {{ $posts->created_at }}</p>
                     </div>
                     <div class="mt-6 text-gray-500 coin_dt p_description">
-                        <p>{{ $posts->description }}</p>
+                        <p class="p_description">{{ $posts->description }}</p>
                     </div>
                     <div class="coin_price text-2xl">
                         @if($posts->user_id == Auth::user()->email)
                             @csrf
-                            <button class="submit_btn edit_btn" type="button" onclick="location.href='{{ route('edit', $posts->id) }}'">수정</button>
-                            <button class="submit_btn edit_btn" type="button" onclick="location.href='{{ route('delete', $posts->id) }}'">삭제</button>
+                            <button class="submit_btn edit_btn a_btn" type="button" onclick="location.href='{{ route('edit', $posts->id) }}'">수정</button>
+                            <button class="submit_btn edit_btn a_btn" type="button" onclick="location.href='{{ route('delete', $posts->id) }}'">삭제</button>
                         @endif
                     </div>
                     <div class="mt-6 text-gray-500 coin_dt">

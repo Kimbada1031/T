@@ -14,7 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
+        //'guard' => 'api', // jwt auth
+        'guard' => 'web', // 기존 auth
         'passwords' => 'users',
     ],
 
@@ -41,7 +42,7 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
+        /* 'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
@@ -49,7 +50,7 @@ return [
         'api' => [
             'driver' => 'jwt',
             'provider' => 'admins',
-        ],
+        ], */
     ],
 
     /*
@@ -75,10 +76,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'admins' => [
+        /* 'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
-        ],
+        ], */
 
         // 'users' => [
         //     'driver' => 'database',

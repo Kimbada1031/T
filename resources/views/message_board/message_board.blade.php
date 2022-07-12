@@ -16,12 +16,14 @@
                     글 목록
                     <div class="mt-6 text-gray-500 coin_dt">
                         <table class="p_table">
+                            <th>글 번호</th>
                             <th>제목</th>
                             <th>작성자</th>
                             <th>작성일</th>
                             <th>추천</th>
                         @forelse($posts as $post => $li)
                             <tr>
+                                <td>{{ $li->id }}</td>
                                 <td><a class="t_list" href="{{ route('show', $li->id) }}">{{ $li->title }}</a> ({{ $li->cnt }})</td>
                                 <td>{{ $li->user_id }}</td>
                                 <td>{{ $li->created_at }}</td>

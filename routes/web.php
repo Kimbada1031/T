@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\EditorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,3 +48,5 @@ Route::get('/d_comment/{id}', [PostController::class, 'commentDestroy'])->name('
 Route::get('/u_comment/{id}', [PostController::class, 'commentUpdate'])->name('u_comment');
 
 Route::get('/test', [TestController::class, 'index'])->name('test');
+
+Route::post('/editor/upload', [EditorController::class, 'upload'])->name('editor.upload');
