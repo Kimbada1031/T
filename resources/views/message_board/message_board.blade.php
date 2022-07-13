@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    글 목록
+                    글 목록sdfsf
                     <div class="mt-6 text-gray-500 coin_dt">
                         <table class="p_table">
                             <th>글 번호</th>
@@ -24,7 +24,7 @@
                         @forelse($posts as $post => $li)
                             <tr>
                                 <td>{{ $li->id }}</td>
-                                <td><a class="t_list" href="{{ route('show', $li->id) }}">{{ $li->title }}</a> ({{ $li->cnt }})</td>
+                                <td align="left"><a class="t_list" href="{{ route('show', $li->id) }}">{{ $li->title }}</a> ({{ $li->cnt }})</td>
                                 <td>{{ $li->user_id }}</td>
                                 <td>{{ $li->created_at }}</td>
                                 <td>0</td>

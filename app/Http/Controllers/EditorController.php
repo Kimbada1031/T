@@ -36,6 +36,7 @@ class EditorController extends Controller
 
         return response()->json([
             'url' => $urls,
+            'file_name' => $file_name,
         ]);
     }
 }

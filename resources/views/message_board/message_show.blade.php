@@ -18,7 +18,7 @@
                         <p align="right">작성일 :  {{ $posts->created_at }}</p>
                     </div>
                     <div class="mt-6 text-gray-500 coin_dt p_description">
-                        <p class="p_description">{{ $posts->description }}</p>
+                        <p class="p_description">{!! $posts->description !!}</p>
                     </div>
                     <div class="coin_price text-2xl">
                         @if($posts->user_id == Auth::user()->email)

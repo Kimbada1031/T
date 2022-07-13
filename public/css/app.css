@@ -2306,7 +2306,7 @@ select {
         text-decoration: none;
         font-weight: 600;
         transition: 0.25s;
-        margin: 20px;
+        margin: 35px 10px 10px 10px;
         background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
         color: white;
         font-size: 1rem;
@@ -2370,7 +2370,7 @@ select {
     }
 
     .title_box {
-        width: 88.2%;
+        width: 91.2%;
     }
 
     .description_box {

@@ -51,14 +51,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::create([
-            'category' => $request->category,
-            'user_id' => Auth::user()->email,
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
+        if($request->file_name) {
+            $post = Post::create([
+                'category' => $request->category,
+                'user_id' => Auth::user()->email,
+                'title' => $request->title,
+                'description' => $request->description,
+                'file' => $request->file_name,
+            ]);
+        } else {
+            $post = Post::create([
+                'category' => $request->category,
+                'user_id' => Auth::user()->email,
+                'title' => $request->title,
+                'description' => $request->description,
+            ]);
+        }
 
-        return redirect('/dashboard');
+        $post_id = $post->id;
+        
+        return redirect()->route('show', $post_id);
     }
 
     public function commentStore(Request $request)
